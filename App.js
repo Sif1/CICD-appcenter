@@ -71,10 +71,9 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Crash" onPress={() => Crashes.generateTestCrash()} />
         <Button
-          title="Track Event"
-          onPress={() => Analytics.trackEvent('Event Tracked - click')}
+          title="Track Event Test"
+          onPress={() => Analytics.trackEvent('Test event!')}
         />
         <TextInput
           placeholder="Current inflation rate"
