@@ -19,7 +19,8 @@ jest.mock('appcenter-crashes', () => {
 
 it('renders correctly', () => {
   const component = renderer.create(<App />);
-  const johnDoe = 'JohnDoe';
   expect(component).toMatchSnapshot();
-  expect(johnDoe).toEqual(2);
+  // UNCOMMENT IN ORDER TO FAIL THE TEST/BUILD
+  // const johnDoe = 'JohnDoe';
+  // expect(johnDoe).toEqual(2);
 });
