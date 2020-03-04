@@ -25,34 +25,6 @@ export default class App extends React.Component {
     this.checkPreviousSession();
   }
 
-  calculateInflationImpact(value, inflationRate, time) {
-    return value / Math.pow(1 + inflationRate, time);
-  }
-
-  calculate() {
-    const afterInflation = this.calculateInflationImpact(
-      this.state.amount,
-      this.state.inflationRate / 100,
-      this.state.timeInYears,
-    );
-    const atRiskFree =
-      this.state.amount *
-      Math.pow(1 + this.state.riskFreeRate / 100, this.state.timeInYears);
-    const atRiskFreeAfterInflation = this.calculateInflationImpact(
-      atRiskFree,
-      this.state.inflationRate / 100,
-      this.state.timeInYears,
-    );
-    const difference = atRiskFreeAfterInflation - afterInflation;
-
-    this.setState({
-      afterInflation,
-      atRiskFree,
-      atRiskFreeAfterInflation,
-      difference,
-    });
-  }
-
   checkPreviousSession = async () => {
     //check if the app has crashed in the last active sessionaaaaa
     const didCrash = await Crashes.hasCrashedInLastSession();
@@ -68,56 +40,7 @@ export default class App extends React.Component {
           title="Track Event Test"
           onPress={() => Analytics.trackEvent('Test event!!')}
         />
-        <TextInput
-          placeholder="Current inflation rate"
-          style={styles.textBox}
-          keyboardType="decimal-pad"
-          onChangeText={inflationRate => this.setState({inflationRate})}
-        />
-        <TextInput
-          placeholder="Current risk free rate"
-          style={styles.textBox}
-          keyboardType="decimal-pad"
-          onChangeText={riskFreeRate => this.setState({riskFreeRate})}
-        />
-        <TextInput
-          placeholder="Amount you want to save"
-          style={styles.textBox}
-          keyboardType="decimal-pad"
-          onChangeText={amount => this.setState({amount})}
-        />
-        <TextInput
-          placeholder="For how long (in years) will you save?"
-          style={styles.textBox}
-          keyboardType="decimal-pad"
-          onChangeText={timeInYears => this.setState({timeInYears})}
-        />
-        <Button
-          title="Calculate inflation"
-          onPress={() => {
-            this.calculate();
-            Analytics.trackEvent('calculate_inflation', {
-              Internet: 'WiFi',
-              GPS: 'Off',
-            });
-          }}
-        />
-        <Text style={styles.label}>
-          {this.state.timeInYears} years from now you will still have $
-          {this.state.amount} but it will only be worth $
-          {this.state.afterInflation}.
-        </Text>
-        <Text style={styles.label}>
-          But if you invest it at a risk free rate you will have $
-          {this.state.atRiskFree}.
-        </Text>
-        <Text style={styles.label}>
-          Which will be worth ${this.state.atRiskFreeAfterInflation} after
-          inflation.
-        </Text>
-        <Text style={styles.label}>
-          A difference of: ${this.state.difference}.
-        </Text>
+        <Text style={styles.text}>HELLO WORLD</Text>
       </View>
     );
   }
@@ -127,50 +50,12 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 40,
     marginHorizontal: 16,
+    backgroundColor: '#34e3b7',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  label: {
-    marginTop: 10,
-  },
-  textBox: {
-    height: 30,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginTop: 10,
-  },
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  text: {
+    fontSize: 40,
+    color: 'black',
   },
 });
