@@ -54,7 +54,7 @@ export default class App extends React.Component {
   }
 
   checkPreviousSession = async () => {
-    //check if the app has crashed in the last active session
+    //check if the app has crashed in the last active sessionaaaaa
     const didCrash = await Crashes.hasCrashedInLastSession();
     if (didCrash) {
       alert('Sorry about that last crash mate!');
