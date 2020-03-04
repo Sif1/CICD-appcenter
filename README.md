@@ -20,6 +20,7 @@ dev:
 - receives pull requests from 'feature-x' branches
 - PR automatic builds with jest tests and lint check (if any of those fail, the PR won't go through)
 - push: automatic builds
+- won't distribute to QA
 
 test:
 
